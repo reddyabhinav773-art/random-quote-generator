@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Mood-Based Quote Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- App Container -->
+    <div id="app">
+        <!-- Navigation Bar -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>✨ Mood Quotes</h1>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="#" onclick="navigateTo('home')" class="nav-link">Home</a>
+                    <a href="#" onclick="navigateTo('about')" class="nav-link">About</a>
+                    <a href="#" onclick="navigateTo('contact')" class="nav-link">Contact</a>
+                    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()">🌙</button>
+                    <a href="#" onclick="navigateTo('login')" class="nav-link" id="loginNavLink">Login</a>
+                    <button id="logoutBtn" class="logout-btn" onclick="logout()" style="display: none;">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- PAGES CONTAINER -->
+        <div class="pages-container">
+
+            <!-- PAGE 1: HOME PAGE -->
+            <section id="home" class="page active">
+                <div class="container">
+                    <div class="hero">
+                        <h2>Welcome to Smart Mood-Based Quote Generator</h2>
+                        <p>Discover inspiring quotes tailored to your mood. Choose one or multiple feelings and get personalized motivation!</p>
+                    </div>
+
+                    <!-- MOOD SELECTION SECTION -->
+                    <div class="home-section">
+                        <h3>How are you feeling today? (Select one or more)</h3>
+                        <p class="page-subtitle">Choose your moods to get personalized quotes</p>
+                        <div class="mood-grid">
+                            <div class="mood-card" onclick="toggleMoodMultiple('happy', this)" style="background: linear-gradient(135deg, #FFD700, #FFA500);">
+                                <div class="mood-emoji">😊</div>
+                                <div class="mood-name">Happy</div>
+                                <div class="mood-checkbox" id="checkbox-happy">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('sad', this)" style="background: linear-gradient(135deg, #87CEEB, #4169E1);">
+                                <div class="mood-emoji">😢</div>
+                                <div class="mood-name">Sad</div>
+                                <div class="mood-checkbox" id="checkbox-sad">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('angry', this)" style="background: linear-gradient(135deg, #FF6347, #DC143C);">
+                                <div class="mood-emoji">😠</div>
+                                <div class="mood-name">Angry</div>
+                                <div class="mood-checkbox" id="checkbox-angry">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('stressed', this)" style="background: linear-gradient(135deg, #9370DB, #8B008B);">
+                                <div class="mood-emoji">😰</div>
+                                <div class="mood-name">Stressed</div>
+                                <div class="mood-checkbox" id="checkbox-stressed">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('motivated', this)" style="background: linear-gradient(135deg, #32CD32, #228B22);">
+                                <div class="mood-emoji">💪</div>
+                                <div class="mood-name">Motivated</div>
+                                <div class="mood-checkbox" id="checkbox-motivated">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('relaxed', this)" style="background: linear-gradient(135deg, #20B2AA, #48D1CC);">
+                                <div class="mood-emoji">😌</div>
+                                <div class="mood-name">Relaxed</div>
+                                <div class="mood-checkbox" id="checkbox-relaxed">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('confident', this)" style="background: linear-gradient(135deg, #FF1493, #FF69B4);">
+                                <div class="mood-emoji">✨</div>
+                                <div class="mood-name">Confident</div>
+                                <div class="mood-checkbox" id="checkbox-confident">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('grateful', this)" style="background: linear-gradient(135deg, #FFB6C1, #FF69B4);">
+                                <div class="mood-emoji">🙏</div>
+                                <div class="mood-name">Grateful</div>
+                                <div class="mood-checkbox" id="checkbox-grateful">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('hopeful', this)" style="background: linear-gradient(135deg, #7FFFD4, #00BFFF);">
+                                <div class="mood-emoji">🌈</div>
+                                <div class="mood-name">Hopeful</div>
+                                <div class="mood-checkbox" id="checkbox-hopeful">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('focused', this)" style="background: linear-gradient(135deg, #F4A460, #CD853F);">
+                                <div class="mood-emoji">🎯</div>
+                                <div class="mood-name">Focused</div>
+                                <div class="mood-checkbox" id="checkbox-focused">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('anxious', this)" style="background: linear-gradient(135deg, #B0C4DE, #778899);">
+                                <div class="mood-emoji">😟</div>
+                                <div class="mood-name">Anxious</div>
+                                <div class="mood-checkbox" id="checkbox-anxious">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('lonely', this)" style="background: linear-gradient(135deg, #DDA0DD, #BA55D3);">
+                                <div class="mood-emoji">🌙</div>
+                                <div class="mood-name">Lonely</div>
+                                <div class="mood-checkbox" id="checkbox-lonely">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('disgust', this)" style="background: linear-gradient(135deg, #8B4513, #A0522D);">
+                                <div class="mood-emoji">🤢</div>
+                                <div class="mood-name">Disgust</div>
+                                <div class="mood-checkbox" id="checkbox-disgust">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('peace', this)" style="background: linear-gradient(135deg, #AED581, #8BC34A);">
+                                <div class="mood-emoji">☮️</div>
+                                <div class="mood-name">Peace</div>
+                                <div class="mood-checkbox" id="checkbox-peace">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('acceptance', this)" style="background: linear-gradient(135deg, #FFEB3B, #FFC107);">
+                                <div class="mood-emoji">🤝</div>
+                                <div class="mood-name">Acceptance</div>
+                                <div class="mood-checkbox" id="checkbox-acceptance">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('affection', this)" style="background: linear-gradient(135deg, #F48FB1, #F06292);">
+                                <div class="mood-emoji">💕</div>
+                                <div class="mood-name">Affection</div>
+                                <div class="mood-checkbox" id="checkbox-affection">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('compassion', this)" style="background: linear-gradient(135deg, #FF8A65, #FF7043);">
+                                <div class="mood-emoji">❤️</div>
+                                <div class="mood-name">Compassion</div>
+                                <div class="mood-checkbox" id="checkbox-compassion">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('awe', this)" style="background: linear-gradient(135deg, #4FC3F7, #29B6F6);">
+                                <div class="mood-emoji">🌠</div>
+                                <div class="mood-name">Awe</div>
+                                <div class="mood-checkbox" id="checkbox-awe">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('nostalgia', this)" style="background: linear-gradient(135deg, #B39DDB, #9575CD);">
+                                <div class="mood-emoji">🕰️</div>
+                                <div class="mood-name">Nostalgia</div>
+                                <div class="mood-checkbox" id="checkbox-nostalgia">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('emptiness', this)" style="background: linear-gradient(135deg, #B0BEC5, #90A4AE);">
+                                <div class="mood-emoji">🕳️</div>
+                                <div class="mood-name">Emptiness</div>
+                                <div class="mood-checkbox" id="checkbox-emptiness">☐</div>
+                            </div>
+                            <div class="mood-card" onclick="toggleMoodMultiple('distress', this)" style="background: linear-gradient(135deg, #D32F2F, #C62828);">
+                                <div class="mood-emoji">⚠️</div>
+                                <div class="mood-name">Distress</div>
+                                <div class="mood-checkbox" id="checkbox-distress">☐</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="generateMultipleMoodQuotes()" id="generateBtn" style="margin-top: 30px;">Generate Quote Mix</button>
+                    </div>
+
+                    <!-- QUOTE DISPLAY POPUP -->
+                    <div class="home-section quote-popup-overlay" id="quoteResultSection" style="display: none;" onclick="hideQuotePopup()">
+                        <div class="quote-container" onclick="event.stopPropagation()">
+                            <button class="close-popup" onclick="hideQuotePopup()" aria-label="Close quote popup">×</button>
+                            <div class="quote-text">
+                                <p id="homeQuoteText">✨ "Start your day with a positive mindset." ✨</p>
+                                <p id="homeQuoteAuthor">- Unknown</p>
+                                <p id="homeQuoteMood" style="font-size: 0.9rem; color: #999; margin-top: 10px;"></p>
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-icon" onclick="refreshCurrentQuote()" title="Generate New Quote">🔄 New Quote</button>
+                                <button class="btn btn-icon" onclick="addCurrentQuoteToFavorites()" title="Add to Favorites">⭐ Favorite</button>
+                                <button class="btn btn-icon" onclick="copyCurrentQuote()" title="Copy Quote">📋 Copy</button>
+                                <button class="btn btn-icon" onclick="shareCurrentQuote()" title="Share Quote">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FEATURES & QUICK LINKS -->
+                    <div class="home-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Multiple Moods</h3>
+                            <p>Select one or more moods to get diverse quotes matching your feelings.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⭐</div>
+                            <h3>Save Favorites</h3>
+                            <p>Store your favorite quotes and access them anytime.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📜</div>
+                            <h3>Track History</h3>
+                            <p>Keep track of all quotes you've generated in this session.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <h3>Dark Mode</h3>
+                            <p>Switch between light and dark themes for comfortable viewing.</p>
+                        </div>
+                    </div>
+
+                    <!-- QUICK ACCESS BUTTONS (shown to logged-in users) -->
+                    <div id="loggedInQuickLinks" style="display: none; text-align: center; margin-top: 40px;">
+                        <h3>Your Saved Quotes</h3>
+                        <div class="dashboard-content">
+                            <button class="btn btn-secondary" onclick="navigateTo('favorites')">⭐ My Favorites</button>
+                            <button class="btn btn-secondary" onclick="navigateTo('history')">📜 History</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 2: LOGIN PAGE -->
+            <section id="login" class="page">
+                <div class="container">
+                    <div class="auth-form">
+                        <h2>Login to Your Account</h2>
+                        <p style="text-align: center; color: var(--text-color); opacity: 0.7; margin-bottom: 25px;">Login to save your favorite quotes and track your history</p>
+                        <form onsubmit="handleLogin(event)">
+                            <div class="form-group">
+                                <label for="loginEmail">Email:</label>
+                                <input type="email" id="loginEmail" required placeholder="Enter your email">
+                                <span class="error" id="loginEmailError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Password:</label>
+                                <input type="password" id="loginPassword" required placeholder="Enter your password">
+                                <span class="error" id="loginPasswordError"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                        </form>
+                        <p style="text-align: center; margin-top: 20px;">Don't have an account? <a href="#" onclick="navigateTo('signup')">Sign Up here</a></p>
+                        <p style="text-align: center;"><a href="#" onclick="navigateTo('home')">Back to Home</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 3: SIGNUP PAGE -->
+            <section id="signup" class="page">
+                <div class="container">
+                    <div class="auth-form">
+                        <h2>Create Your Account</h2>
+                        <p style="text-align: center; color: var(--text-color); opacity: 0.7; margin-bottom: 25px;">Join us to save quotes and track your journey</p>
+                        <form onsubmit="handleSignup(event)">
+                            <div class="form-group">
+                                <label for="signupName">Full Name:</label>
+                                <input type="text" id="signupName" required placeholder="Enter your full name">
+                                <span class="error" id="signupNameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="signupEmail">Email:</label>
+                                <input type="email" id="signupEmail" required placeholder="Enter your email">
+                                <span class="error" id="signupEmailError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="signupPassword">Password:</label>
+                                <input type="password" id="signupPassword" required placeholder="Create a password">
+                                <span class="error" id="signupPasswordError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="signupConfirmPassword">Confirm Password:</label>
+                                <input type="password" id="signupConfirmPassword" required placeholder="Confirm your password">
+                                <span class="error" id="signupConfirmPasswordError"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+                        </form>
+                        <p style="text-align: center; margin-top: 20px;">Already have an account? <a href="#" onclick="navigateTo('login')">Login here</a></p>
+                        <p style="text-align: center;"><a href="#" onclick="navigateTo('home')">Back to Home</a></p>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- PAGE 5-12: MOOD SPECIFIC PAGES (Happy) -->
+            <section id="moodPage-happy" class="page mood-specific-page" style="--mood-color: #FFD700;">
+                <div class="container">
+                    <div class="mood-page-header">
+                        <h2>😊 You're Feeling Happy!</h2>
+                        <p>Here's a quote to brighten your day even more</p>
+                    </div>
+                    <div class="quote-display-section">
+                        <div class="quote-container">
+                            <div class="quote-text" id="quoteDisplayHappy">
+                                <p id="quoteTextHappy">😊 "Choose your battles wisely." 😊</p>
+                                <p id="quoteAuthorHappy">- Unknown</p>
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-icon" onclick="generateQuote('happy')" title="Generate New Quote">🔄 New Quote</button>
+                                <button class="btn btn-icon" onclick="addToFavorites('happy')" title="Add to Favorites">⭐ Favorite</button>
+                                <button class="btn btn-icon" onclick="copyQuote('happy')" title="Copy Quote">📋 Copy</button>
+                                <button class="btn btn-icon" onclick="shareQuote('happy')" title="Share Quote">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 6-12: MOOD SPECIFIC PAGES (Sad) -->
+            <section id="moodPage-sad" class="page mood-specific-page" style="--mood-color: #87CEEB;">
+                <div class="container">
+                    <div class="mood-page-header">
+                        <h2>😢 You're Feeling Sad</h2>
+                        <p>Here's a quote to lift your spirits</p>
+                    </div>
+                    <div class="quote-display-section">
+                        <div class="quote-container">
+                            <div class="quote-text" id="quoteDisplaySad">
+                                <p id="quoteTextSad">😢 "This too shall pass." 😢</p>
+                                <p id="quoteAuthorSad">- Persian Proverb</p>
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-icon" onclick="generateQuote('sad')" title="Generate New Quote">🔄 New Quote</button>
+                                <button class="btn btn-icon" onclick="addToFavorites('sad')" title="Add to Favorites">⭐ Favorite</button>
+                                <button class="btn btn-icon" onclick="copyQuote('sad')" title="Copy Quote">📋 Copy</button>
+                                <button class="btn btn-icon" onclick="shareQuote('sad')" title="Share Quote">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 7-12: MOOD SPECIFIC PAGES (Angry) -->
+            <section id="moodPage-angry" class="page mood-specific-page" style="--mood-color: #FF6347;">
+                <div class="container">
+                    <div class="mood-page-header">
+                        <h2>😠 You're Feeling Angry</h2>
+                        <p>Here's a quote to help you find peace</p>
+                    </div>
+                    <div class="quote-display-section">
+                        <div class="quote-container">
+                            <div class="quote-text" id="quoteDisplayAngry">
+                                <p id="quoteTextAngry">😠 "Anger is an acid that can do more harm to the vessel in which it is stored than to anything on which it is poured." 😠</p>
+                                <p id="quoteAuthorAngry">- Mark Twain</p>
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-icon" onclick="generateQuote('angry')" title="Generate New Quote">🔄 New Quote</button>
+                                <button class="btn btn-icon" onclick="addToFavorites('angry')" title="Add to Favorites">⭐ Favorite</button>
+                                <button class="btn btn-icon" onclick="copyQuote('angry')" title="Copy Quote">📋 Copy</button>
+                                <button class="btn btn-icon" onclick="shareQuote('angry')" title="Share Quote">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 8-12: MOOD SPECIFIC PAGES (Stressed) -->
+            <section id="moodPage-stressed" class="page mood-specific-page" style="--mood-color: #9370DB;">
+                <div class="container">
+                    <div class="mood-page-header">
+                        <h2>😰 You're Feeling Stressed</h2>
+                        <p>Here's a quote to calm your mind</p>
+                    </div>
+                    <div class="quote-display-section">
+                        <div class="quote-container">
+                            <div class="quote-text" id="quoteDisplayStressed">
+                                <p id="quoteTextStressed">😰 "Stress is just a word for something we haven't figured out how to enjoy yet." 😰</p>
+                                <p id="quoteAuthorStressed">- Tony Schwartz</p>
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-icon" onclick="generateQuote('stressed')" title="Generate New Quote">🔄 New Quote</button>
+                                <button class="btn btn-icon" onclick="addToFavorites('stressed')" title="Add to Favorites">⭐ Favorite</button>
+                                <button class="btn btn-icon" onclick="copyQuote('stressed')" title="Copy Quote">📋 Copy</button>
+                                <button class="btn btn-icon" onclick="shareQuote('stressed')" title="Share Quote">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 9-12: MOOD SPECIFIC PAGES (Motivated) -->
+            <section id="moodPage-motivated" class="page mood-specific-page" style="--mood-color: #32CD32;">
+                <div class="container">
+                    <div class="mood-page-header">
+                        <h2>💪 You're Feeling Motivated!</h2>
+                        <p>Here's a quote to fuel your determination</p>
+                    </div>
+                    <div class="quote-display-section">
+                        <div class="quote-container">
+                            <div class="quote-text" id="quoteDisplayMotivated">
+                                <p id="quoteTextMotivated">💪 "The only way to do great work is to love what you do." 💪</p>
+                                <p id="quoteAuthorMotivated">- Steve Jobs</p>
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-icon" onclick="generateQuote('motivated')" title="Generate New Quote">🔄 New Quote</button>
+                                <button class="btn btn-icon" onclick="addToFavorites('motivated')" title="Add to Favorites">⭐ Favorite</button>
+                                <button class="btn btn-icon" onclick="copyQuote('motivated')" title="Copy Quote">📋 Copy</button>
+                                <button class="btn btn-icon" onclick="shareQuote('motivated')" title="Share Quote">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 10-12: MOOD SPECIFIC PAGES (Relaxed) -->
+            <section id="moodPage-relaxed" class="page mood-specific-page" style="--mood-color: #20B2AA;">
+                <div class="container">
+                    <div class="mood-page-header">
+                        <h2>😌 You're Feeling Relaxed</h2>
+                        <p>Here's a quote to embrace the moment</p>
+                    </div>
+                    <div class="quote-display-section">
+                        <div class="quote-container">
+                            <div class="quote-text" id="quoteDisplayRelaxed">
+                                <p id="quoteTextRelaxed">😌 "Peace comes from within. Do not seek it without." 😌</p>
+                                <p id="quoteAuthorRelaxed">- Buddha</p>
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-icon" onclick="generateQuote('relaxed')" title="Generate New Quote">🔄 New Quote</button>
+                                <button class="btn btn-icon" onclick="addToFavorites('relaxed')" title="Add to Favorites">⭐ Favorite</button>
+                                <button class="btn btn-icon" onclick="copyQuote('relaxed')" title="Copy Quote">📋 Copy</button>
+                                <button class="btn btn-icon" onclick="shareQuote('relaxed')" title="Share Quote">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 11-12: MOOD SPECIFIC PAGES (Confident) -->
+            <section id="moodPage-confident" class="page mood-specific-page" style="--mood-color: #FF1493;">
+                <div class="container">
+                    <div class="mood-page-header">
+                        <h2>✨ You're Feeling Confident!</h2>
+                        <p>Here's a quote to celebrate your strength</p>
+                    </div>
+                    <div class="quote-display-section">
+                        <div class="quote-container">
+                            <div class="quote-text" id="quoteDisplayConfident">
+                                <p id="quoteTextConfident">✨ "Believe in yourself. You are braver than you think, more talented than you know, and capable of more than you imagine." ✨</p>
+                                <p id="quoteAuthorConfident">- Roy T. Bennett</p>
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-icon" onclick="generateQuote('confident')" title="Generate New Quote">🔄 New Quote</button>
+                                <button class="btn btn-icon" onclick="addToFavorites('confident')" title="Add to Favorites">⭐ Favorite</button>
+                                <button class="btn btn-icon" onclick="copyQuote('confident')" title="Copy Quote">📋 Copy</button>
+                                <button class="btn btn-icon" onclick="shareQuote('confident')" title="Share Quote">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 12-12: MOOD SPECIFIC PAGES (Grateful) -->
+            <section id="moodPage-grateful" class="page mood-specific-page" style="--mood-color: #FFB6C1;">
+                <div class="container">
+                    <div class="mood-page-header">
+                        <h2>🙏 You're Feeling Grateful!</h2>
+                        <p>Here's a quote to honor your gratitude</p>
+                    </div>
+                    <div class="quote-display-section">
+                        <div class="quote-container">
+                            <div class="quote-text" id="quoteDisplayGrateful">
+                                <p id="quoteTextGrateful">🙏 "Gratitude is not only the greatest of virtues, but the parent of all others." 🙏</p>
+                                <p id="quoteAuthorGrateful">- Marcus Tullius Cicero</p>
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-icon" onclick="generateQuote('grateful')" title="Generate New Quote">🔄 New Quote</button>
+                                <button class="btn btn-icon" onclick="addToFavorites('grateful')" title="Add to Favorites">⭐ Favorite</button>
+                                <button class="btn btn-icon" onclick="copyQuote('grateful')" title="Copy Quote">📋 Copy</button>
+                                <button class="btn btn-icon" onclick="shareQuote('grateful')" title="Share Quote">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 13: FAVORITES PAGE -->
+            <section id="favorites" class="page">
+                <div class="container">
+                    <h2>⭐ My Favorite Quotes</h2>
+                    <p class="page-subtitle">Your curated collection of inspiring quotes</p>
+                    <div id="favoritesList" class="quotes-list">
+                        <div class="empty-state">
+                            <p>No favorite quotes yet. Start adding your favorites!</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 14: HISTORY PAGE -->
+            <section id="history" class="page">
+                <div class="container">
+                    <h2>📜 Quote History</h2>
+                    <p class="page-subtitle">All quotes you've generated in this session</p>
+                    <div id="historyList" class="quotes-list">
+                        <div class="empty-state">
+                            <p>No history yet. Generate some quotes to see them here!</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="clearHistory()">Clear History</button>
+                    <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                </div>
+            </section>
+
+            <!-- PAGE 15: ABOUT PAGE -->
+            <section id="about" class="page">
+                <div class="container">
+                    <h2>About Smart Mood-Based Quote Generator</h2>
+                    <div class="about-content">
+                        <div class="about-section">
+                            <h3>🎯 Our Mission</h3>
+                            <p>We believe that the right words at the right time can transform your mood and inspire positive action. Our mission is to provide personalized, mood-based quotes that uplift, motivate, and encourage reflection.</p>
+                        </div>
+                        <div class="about-section">
+                            <h3>✨ Features</h3>
+                            <ul>
+                                <li>8+ mood categories to choose from</li>
+                                <li>Hundreds of carefully curated quotes</li>
+                                <li>Save your favorite quotes for later</li>
+                                <li>Track your quote history</li>
+                                <li>Share quotes with friends</li>
+                                <li>Dark/Light mode support</li>
+                                <li>Fully responsive design</li>
+                            </ul>
+                        </div>
+                        <div class="about-section">
+                            <h3>🛠️ Technology</h3>
+                            <p>Built with pure HTML, CSS, and JavaScript. No dependencies, no frameworks, just clean, simple, and efficient code.</p>
+                        </div>
+                        <div class="about-section">
+                            <h3>👥 Who We Are</h3>
+                            <p>A team of passionate developers dedicated to creating tools that make a positive impact on people's lives. We believe in the power of technology to inspire and motivate.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 16: CONTACT PAGE -->
+            <section id="contact" class="page">
+                <div class="container">
+                    <h2>Contact Us</h2>
+                    <p class="page-subtitle">We'd love to hear from you! Send us your feedback or queries.</p>
+                    <div class="contact-form">
+                        <form onsubmit="handleContact(event)">
+                            <div class="form-group">
+                                <label for="contactName">Name:</label>
+                                <input type="text" id="contactName" required placeholder="Your name">
+                                <span class="error" id="contactNameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email:</label>
+                                <input type="email" id="contactEmail" required placeholder="Your email">
+                                <span class="error" id="contactEmailError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject">Subject:</label>
+                                <input type="text" id="contactSubject" required placeholder="Subject">
+                                <span class="error" id="contactSubjectError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Message:</label>
+                                <textarea id="contactMessage" rows="6" required placeholder="Your message"></textarea>
+                                <span class="error" id="contactMessageError"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p>📧 Email: support@moodquotes.com</p>
+                        <p>🌐 Website: www.moodquotes.com</p>
+                        <p>📱 Phone: +1 (555) 123-4567</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 17: SETTINGS PAGE (Optional) -->
+            <section id="settings" class="page">
+                <div class="container">
+                    <h2>Settings</h2>
+                    <div class="settings-content">
+                        <div class="settings-section">
+                            <h3>Appearance</h3>
+                            <div class="setting-item">
+                                <label for="themeSelect">Theme:</label>
+                                <select id="themeSelect" onchange="updateThemeSettings()">
+                                    <option value="light">Light Mode</option>
+                                    <option value="dark">Dark Mode</option>
+                                    <option value="auto">Auto (System)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="settings-section">
+                            <h3>Preferences</h3>
+                            <div class="setting-item">
+                                <label>
+                                    <input type="checkbox" id="notificationsCheck" checked>
+                                    Enable Notifications
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label>
+                                    <input type="checkbox" id="animationsCheck" checked>
+                                    Enable Animations
+                                </label>
+                            </div>
+                        </div>
+                        <div class="settings-section">
+                            <h3>Data Management</h3>
+                            <button class="btn btn-secondary" onclick="exportData()">Export My Data</button>
+                            <button class="btn btn-secondary" onclick="clearAllData()">Clear All Local Data</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Smart Mood-Based Quote Generator. All rights reserved. | Built with ❤️ for inspiration</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
